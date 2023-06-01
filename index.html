@@ -86,22 +86,148 @@
       <button>Trigger a Global Error</button>
     </section>
   </main>
+  <!-- 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS && TrackJS.install({ 
+    token: "298cf1443f29446ea6d017b252a0f4ec"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+</script> -->
 
+
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
+    window.TrackJS && TrackJS.install({
+      token: "298cf1443f29446ea6d017b252a0f4ec"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
-      e.preventDefault();
-      let output = document.querySelector('output');
-      let firstNum = document.querySelector('#first-num').value;
-      let secondNum = document.querySelector('#second-num').value;
-      let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      try {
+        e.preventDefault();
+        let output = document.querySelector('output');
+        let firstNum = document.querySelector('#first-num').value;
+        let secondNum = document.querySelector('#second-num').value;
+        let operator = document.querySelector('#operator').value;
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      }
+      catch (except) {
+        console.log("There is an error with the input");
+        throw new MyError("Bad Input");
+      }
+      finally {
+        console.log("Calculation Works!");
+      };
+
     });
+
+    class MyError extends Error {
+      constructor(message) {
+        super("There is an Error : " + message);
+        this.name = this.constructor.name;
+      }
+    }
+
+
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    //console log
+    errorBtns[0].addEventListener("click", function () {
+      console.log("Console Log Demo");
+    });
+
+    //console error
+    errorBtns[1].addEventListener("click", function () {
+      console.error("Console Error Demo");
+    });
+
+    //console count
+    errorBtns[2].addEventListener("click", function () {
+      console.count("Count Button");
+    });
+
+    //console warn
+    errorBtns[3].addEventListener("click", function () {
+      console.warn("Console Warn Button");
+    });
+
+    //console assert
+    errorBtns[4].addEventListener("click", function () {
+      const assertion = {
+        number: 2,
+        errorMsg: 'The number does not equal 3'
+      };
+
+      console.assert(assertion.number === 3, assertion);
+    })
+
+    //console clear
+    errorBtns[5].addEventListener("click", function () {
+      console.clear();
+    });
+
+    //console dir
+    errorBtns[6].addEventListener("click", function () {
+      console.dir(document.body);
+    });
+
+    //console dirxml
+    errorBtns[7].addEventListener("click", function () {
+      console.dirxml(document);
+    });
+
+    //console group start
+    errorBtns[8].addEventListener("click", function () {
+      console.group();
+    });
+
+    //conssole group end
+    errorBtns[9].addEventListener("click", function () {
+      console.groupEnd();
+    });
+
+    //console table
+    errorBtns[10].addEventListener("click", function () {
+      const table = [
+        ["Fluency in Information Technology", "CSE 3"],
+        ["Mathematical Beauty in Rome Lab", "CSE 6GS"],
+        ["Discrete Mathematics", "CSE 20"],
+        ["Undergraduate Seminar", "CSE 90"]
+      ];
+      console.table(table)
+    });
+
+    //start timer
+    // Timer Start Button Functionality
+    errorBtns[11].addEventListener("click", function () {
+      console.time("Timer Button");
+      console.log("Timer Button Pressed, Timer Starting Now");
+    });
+
+    //stop timer
+    errorBtns[12].addEventListener("click", function () {
+      console.timeEnd("Timer Button");
+    });
+
+    //console trace
+    errorBtns[13].addEventListener("click", function () {
+      console.trace();
+    });
+
+    //trigger a global error
+    errorBtns[14].addEventListener("click", function () {
+      //custom function following demo
+      boom();
+    });
+
+
+    TrackJS.track('Testing TrackJS!');
   </script>
 </body>
 
