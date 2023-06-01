@@ -86,22 +86,18 @@
       <button>Trigger a Global Error</button>
     </section>
   </main>
-  <!-- 
-  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-<script>
-  window.TrackJS && TrackJS.install({ 
-    token: "298cf1443f29446ea6d017b252a0f4ec"
-    // for more configuration options, see https://docs.trackjs.com
-  });
-</script> -->
 
 
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
     window.TrackJS && TrackJS.install({
-      token: "298cf1443f29446ea6d017b252a0f4ec"
-      // for more configuration options, see https://docs.trackjs.com
+      token: "298cf1443f29446ea6d017b252a0f4ec",
+      application: "lab-9"
     });
+  </script>
+
+  <script>
+
 
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
